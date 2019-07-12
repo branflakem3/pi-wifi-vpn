@@ -7,6 +7,10 @@ then
     exit 1
 fi
 
+read -p 'What is the ovpn filename ? ' ovpnname
+read -p 'What is the vpn username ? ' ovpnuser
+read -p 'What is the vpn password ? ' ovpnpass
+
 sudo apt-get update
 sudo apt-get upgrade -y
 
@@ -85,11 +89,13 @@ cd /etc/openvpn
 
 echo "++ Type your username and password in this file"
 echo " sudo nano /etc/openvpn/auth.txt"
-sudo nano /etc/openvpn/auth.txt
+# sudo nano /etc/openvpn/auth.txt
+echo '$ovpnuser' >> /etc/openvpn/auth.txt
+echo '$ovpnpass' >> /etc/openvpn/auth.txt
 
 # Copy openvpn ovpn file into /etc/openvpn and give it the .conf extension"
 echo " ++ Copy openvpn ovpn file into /etc/openvpn and give it the .conf extension"
-
+# echo $ovpnname
 # sudo nano abovefile.conf
 # change auth-user-pass to
 # auth-user-pass auth.txt
